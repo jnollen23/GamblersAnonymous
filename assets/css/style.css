@@ -3,13 +3,27 @@
     background-color: #2a5084;
 }
 .mdc-top-app-bar__Website-Name {
-    position: relative right;
-    font-size: 20px;
-    color: #697217;
+    position: absolute;
+    margin-left: 40%;
+    font-size: 50px;
+    color: rgb(44, 216, 44);
     width: 30%;
 }
 .mdc-top-app-bar_sign-up {
-    position:relative right;
-    width: 10%;
-    
+    position:absolute;
+    margin-left: 85%;
+    background-color:rgb(44, 216, 44);
+    color: black;
+    width: 10%;  
+}
+
+.mdc-top-app-bar__coins {
+    position:absolute;
+    margin-left: 73%;
+    background-color:rgb(44, 216, 44);
+    color: black;
+    width: 10%;  
+}
+.mdc-tab--active .mdc-tab__text-label {
+    color:#2a5084;
 }
