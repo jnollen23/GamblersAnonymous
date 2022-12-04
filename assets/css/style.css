@@ -1,0 +1,15 @@
+
+.mdc-top-app-bar__section {
+    background-color: #2a5084;
+}
+.mdc-top-app-bar__Website-Name {
+    position: relative right;
+    font-size: 20px;
+    color: #697217;
+    width: 30%;
+}
+.mdc-top-app-bar_sign-up {
+    position:relative right;
+    width: 10%;
+    
+}
