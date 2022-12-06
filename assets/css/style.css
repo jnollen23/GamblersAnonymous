@@ -9,21 +9,22 @@
     color: rgb(44, 216, 44);
     width: 30%;
 }
-.mdc-top-app-bar_sign-up {
+.mdc-button.mdc-button--raised {
     position:absolute;
     margin-left: 85%;
     background-color:rgb(44, 216, 44);
     color: black;
-    width: 10%;  
+    width: 165px;  
 }
 
 .mdc-top-app-bar__coins {
     position:absolute;
+    font-size: 15px;
     margin-left: 73%;
-    background-color:rgb(44, 216, 44);
-    color: black;
+    color: rgb(44, 216, 44);
     width: 10%;  
 }
 .mdc-tab--active .mdc-tab__text-label {
     color:#2a5084;
 }
+
