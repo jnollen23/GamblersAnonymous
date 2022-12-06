@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <input class="deckId" hidden></input>
+    <div class="createDeck">
+        <h1>Create Deck</h1>
+        <h2>How many decks do you want to create?</h2>
+        <input class="deckSize"></input>
+        <button id="createDeckBtn" type="button" onclick="createDeck()">Create Deck</button>
+    </div>
+    
+    <div class="dealGame" style="display:none;">
+        <h2>Deal Hands</h2>
+        <button id="drawBtn" type="button" onclick="dealCards()">Deal Cards</button>
+        <button id="playerDrawBtn" type="button" onclick="playerDraw()" hidden>Player Draw</button>
+        <button id="dealerDrawBtn" type="button" onclick="dealerDraw()" hidden>Dealer Draw</button>
+        <div class="playerHand"></div>
+        <div class="dealerHand"></div>
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="./assets/js/script.js"></script>
+
+</html>
