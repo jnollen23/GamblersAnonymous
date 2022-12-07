@@ -33,10 +33,8 @@ function highScoreChecker(gameScore, gameName) {
 //The purpose of this function is to save the player's score to the highScores Array
 function saveHighScore(gameScore, highScores, highScoresArray) {
     
-    //NOTE: It said in the instructions to not use prompts. I am still looking into replacing this code with a modal
-    //For the moment, the function will use a prompt, but it will be replaced at some point.
-    //Also, need to limit input to just three characters
-    var playerName = prompt("CONGRATULATIONS!! Enter your Initials: ");
+    //playername is grabbing the username from the CurrencyStorage.js
+    var playerName = getUser();
     var newScore = {gameScore, playerName };
 
     //This will add the newly recorded score to highScores
