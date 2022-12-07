@@ -26,7 +26,6 @@ function highScoreChecker(gameScore, gameName) {
     //If it is, the if statement will then call the saveHighScore function and the displayHighScores function
     if (gameScore > lowestScore) {
         saveHighScore(gameScore, highScores, highScoresArray);
-        displayHighScores(highScoresArray);
     }
 }
 
@@ -52,9 +51,12 @@ function saveHighScore(gameScore, highScores, highScoresArray) {
 
 
 //The purpose of this function is to display the high score results
-function displayHighScores(highScoresArray) {
+function displayHighScores() {
+    var highScoresArray = getGameName(gameName);
+    
     const highScores = JSON.parse(localStorage.getItem(highScoresArray)) ?? [];
     const hsList = document.getElementById(highScoresArray);
 
     hsList.innerHTML = highScores.map((score) => `<li>${score.gameScore} - ${score.name}`).join('');
 }
+
