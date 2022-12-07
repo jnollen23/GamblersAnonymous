@@ -20,3 +20,7 @@ function ChangeBalance(value){
     playerBalance += value;
     localStorage.setItem(user, playerBalance);
 }
+
+function getUser() {
+    return user;
+}
