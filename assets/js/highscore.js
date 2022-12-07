@@ -5,7 +5,7 @@
 const totalHighScores = 5;
 
 //Used for array/string translation
-var highScoresArray = getGameName(gameName);
+//var highScoresArray = getGameName(gameName);
 
 function getGameName (gameName) {
     gameName += '-hs';
@@ -14,7 +14,9 @@ function getGameName (gameName) {
 
 //The purpose of this function is to check if the player's score is a "high score"
 //The funciton should be called by whatever script will control the "game over" part of the games
-function highScoreChecker(gameScore) {
+function highScoreChecker(gameScore, gameName) {
+    var highScoresArray = getGameName(gameName);
+    
     var highScores = JSON.parse(localStorage.getItem(highScoresArray)) ?? [];
 
     //Elvis operator used to return 0 if there is not a full list yet
@@ -23,13 +25,13 @@ function highScoreChecker(gameScore) {
     //This if statement will check if the player's score is greater than the lowest score in the highScoresArray
     //If it is, the if statement will then call the saveHighScore function and the displayHighScores function
     if (gameScore > lowestScore) {
-        saveHighScore(gameScore, highScores);
-        displayHighScores();
+        saveHighScore(gameScore, highScores, highScoresArray);
+        displayHighScores(highScoresArray);
     }
 }
 
 //The purpose of this function is to save the player's score to the highScores Array
-function saveHighScore(gameScore, highScores) {
+function saveHighScore(gameScore, highScores, highScoresArray) {
     
     //NOTE: It said in the instructions to not use prompts. I am still looking into replacing this code with a modal
     //For the moment, the function will use a prompt, but it will be replaced at some point.
@@ -52,7 +54,7 @@ function saveHighScore(gameScore, highScores) {
 
 
 //The purpose of this function is to display the high score results
-function displayHighScores() {
+function displayHighScores(highScoresArray) {
     const highScores = JSON.parse(localStorage.getItem(highScoresArray)) ?? [];
     const hsList = document.getElementById(highScoresArray);
 
