@@ -1,15 +1,6 @@
-var playerGameHand = [];
-var dealerGameHand = [];
-var playerStay = false;
-var bustbool = false;
-var count = 0;
-var hiddenCard = '';
-var anteAmount = 0;
-
-//creates the deck taking in an int parameter for deciding the deck size
-function createDeck(deckSize) {
+function createDeck() {
     $.ajax({
-        url: "https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=" + deckSize,
+        url: "https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=" + $('.deckSize').val(),
         type: 'GET'
     })
     .then(function(response) {
