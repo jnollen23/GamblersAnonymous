@@ -9,7 +9,7 @@
     color: rgb(44, 216, 44);
     width: 30%;
 }
-.mdc-button.mdc-button--raised {
+#login {
     position:absolute;
     margin-left: 85%;
     background-color:rgb(44, 216, 44);
@@ -26,5 +26,13 @@
 }
 .mdc-tab--active .mdc-tab__text-label {
     color:#2a5084;
+}
+
+.error-text{
+    color:red;
+}
+
+.success-text{
+    color:green;
 }
 

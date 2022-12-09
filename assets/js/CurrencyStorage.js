@@ -16,6 +16,10 @@ function SetUser(name){
     }
 }
 
+function GetUser(){
+    return user;
+}
+
 function ChangeBalance(value){
     playerBalance += value;
     localStorage.setItem(user, playerBalance);

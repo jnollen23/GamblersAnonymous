@@ -18,23 +18,6 @@ var gameOdds = [];
 var totalOdds = 0;
 var curSelTeams = [];
 
-function GetLatestMatches() {
-
-}
-
-function CreateTeamSelect() {
-
-}
-
-function PlaceBet(groupName) {
-    var buttons = document.querySelectorAll(`button[class='${groupName}']`);
-    var betOn;
-    buttons.forEach(x => {
-        if (x.dataset.group)
-            betOn = x.innerHTML;
-    });
-
-}
 
 /* Get game odds from server for a specific sport. You can not get all odds for all sports */
 /* Site uses CORS which means we need a way to get there without having a server of our own
@@ -46,6 +29,8 @@ function PlaceBet(groupName) {
     able to add true odds but I can at least pull games for a given day*/
 function GetGames(sport, timeStart, competition) {
     var fullPath = ``;
+    //Clear any selected bets
+    curSelTeams = [];
 
     if (isTOA) {
         fullPath = `${toaHost}/${sport}/${toaAPIPath}`;
@@ -56,10 +41,10 @@ function GetGames(sport, timeStart, competition) {
     }
 
     $.ajax(fullPath)
-        .then(y => { ShowGames(y) });
+        .then(y => { ShowGames(y, sport, timeStart, competition) });
 }
 
-function ShowGames(fullResp) {
+function ShowGames(fullResp, sport, timeStart, competition) {
     /*https://api.sportsdata.io/v3/soccer/odds/json/GameOddsLineMovement/50005?key=247f38a9ab1043da9133115ee8eecda7*/
     //Clear our the previous body
     headerLocation.innerHTML = ``;
@@ -77,72 +62,121 @@ function ShowGames(fullResp) {
             </div>
             <div class='mdc-layout-grid__inner'>
                 <div class='mdc-radio mdc-radio-touch mdc-layout-grid-cell--span-1'>
-                    <input type='radio' onclick='UpdateOdds("${game.HomeTeamName}")' class='mdc-radio__native-control' id='h${game.GameID}' name='${game.GameId}'>
+                    <input type='radio' onclick='UpdateOdds("${game.HomeTeamName}")' class='mdc-radio__native-control' id='h${game.GameId}' name='${game.GameId}'>
                     <div class='mdc-radio__background'>
                         <div class='mdc-radio__outer-circle'></div>
                         <div class='mdc-radio__inner-circle'></div>
                     </div>
                 </div>
-                <label class='mdc-layout-grid__cell--span-11 radio-label' for='h${game.GameID}'>${game.HomeTeamName}</label>
+                <label class='mdc-layout-grid__cell--span-11 radio-label' for='h${game.GameId}'>${game.HomeTeamName}</label>
             </div>
             <br/>
             <div class='mdc-layout-grid__inner'>
                 <div class='mdc-radio mdc-radio-touch mdc-layout-grid__cell--span-1'>
-                    <input type='radio' onclick='UpdateOdds("${game.AwayTeamName}")' class='mdc-radio__native-control' id='a${game.GameID}' name='${game.GameId}'>
+                    <input type='radio' onclick='UpdateOdds("${game.AwayTeamName}")'class='mdc-radio__native-control' id='a${game.GameId}' name='${game.GameId}'>
                     <div class='mdc-radio__background'>
                         <div class='mdc-radio__outer-circle'></div>
                         <div class='mdc-radio__inner-circle'></div>
                     </div>
                 </div>
-                <label class='mdc-layout-grid__cell--span-11 radio-label' for='a${game.GameID}'>${game.AwayTeamName}</label>
+                <label class='mdc-layout-grid__cell--span-11 radio-label' for='a${game.GameId}'>${game.AwayTeamName}</label>
             </div>    
             <br/>
             <div class='mdc-layout-grid__inner'>
                 <div class='mdc-radio mdc-radio-touch mdc-layout-grid__cell--span-1'>
-                    <input type='radio' onclick='UpdateOdds("none")' class='mdc-radio__native-control' id='n${game.GameID}' name='${game.GameId}'>
+                    <input type='radio' onclick='UpdateOdds("${game.AwayTeamName}|${game.HomeTeamName}")' checked class='mdc-radio__native-control' id='n${game.GameId}' name='${game.GameId}'>
                     <div class='mdc-radio__background'>
                         <div class='mdc-radio__outer-circle'></div>
                         <div class='mdc-radio__inner-circle'></div>
                     </div>
                 </div>
-                <label class='mdc-layout-grid__cell--span-11 radio-label' for='n${game.GameID}'>None</label>
+                <label class='mdc-layout-grid__cell--span-11 radio-label' for='n${game.GameId}'>None</label>
             </div>    
         </div>
     </div>
     `;
         var homeO = Math.floor(randomNumber() * 150) + 25;
-        var awayO = Math.floor(randomNumber() * (homeO > 120) ? 75 : 150) + 25;
+        var awayO = Math.floor(randomNumber() * (homeO > 120) ? 75 : 150) + 20;
         gameOdds.push({
             id: game.GameID,
             homeTeam: game.HomeTeamName,
             homeOdds: homeO,
             awayTeam: game.AwayTeamName,
-            awayOdds: awayO
+            awayOdds: awayO,
+            date:timeStart,
+            sport:sport,
+            competition:competition
         })
     })
     headerLocation.appendChild(listHolder);
     var betTaker = document.createElement('div');
-    
+    headerLocation.appendChild(betTaker);
+
+    betTaker.setAttribute('id', 'betting');
+    betTaker.innerHTML += `
+        <div>
+            <label for='betvalue'>Your Bet</label>
+            <input type='text' id='betvalue'>
+        </div>
+        <div>
+            <label for='betodds'>Total Odds</label>
+            <input type='text' id='betodds' disabled value='0'>
+        </div> 
+        <button class="mdc-button mdc-button--raised" onclick='SubmitBet()'>
+            <span class="mdc-button__touch"></span>
+            <span class="mdc-button__label">Submit Bet</span>
+        </button>
+    `;
+
+    PublishOdds();
 }
 
 function UpdateOdds(team) {
-    for (var x = 0; x < gameOdds.length; x++) {
-        if (gameOdds[x].awayTeam === team) {
-            curSelTeams.push({name:gameOdds[x].awayTeam, odds:gameOdds[x].awayOdds});
-            RemoveOtherTeam(gameOdds[x].homeTeam);
-            break;
-        }
-        else if (gameOdds[x].homeTeam === team) {
-            curSelTeams.push({name:gameOdds[x].homeTeam, odds:gameOdds[x].homeOdds});
-            RemoveOtherTeam(gameOdds[x].awayTeam);
-            break;
+    if (team.indexOf("|") > 0) {
+        var teams = team.split('|');
+        RemoveOtherTeam(teams[0]);
+        RemoveOtherTeam(teams[1]);
+    }
+    else if(BetAlreadySelected(team)) return;
+    else {
+        for (var x = 0; x < gameOdds.length; x++) {
+            if (gameOdds[x].awayTeam === team) {
+                curSelTeams.push({
+                    name: gameOdds[x].awayTeam,
+                    odds: gameOdds[x].awayOdds,
+                    match: gameOdds[x].AwayTeamName + "|" + gameOdds[x].HomeTeamName,
+                    date:gameOdds[x].date,
+                    competition:gameOdds[x].competition,
+                    sport:gameOdds[x].sport
+                });
+                RemoveOtherTeam(gameOdds[x].homeTeam);
+                break;
+            }
+            else if (gameOdds[x].homeTeam === team) {
+                curSelTeams.push({ 
+                    name: gameOdds[x].homeTeam, 
+                    odds: gameOdds[x].homeOdds, 
+                    match: gameOdds[x].AwayTeamName + "|" + gameOdds[x].HomeTeamName,
+                    date:gameOdds[x].timeStart
+                });
+                RemoveOtherTeam(gameOdds[x].awayTeam);
+                break;
+            }
         }
     }
     PublishOdds();
 
 }
 
-function RemoveOtherTeam(team){
+function BetAlreadySelected(team){
+    for(var x = 0; x < curSelTeams.length; x++){
+        if(curSelTeams[x].name === team) return true;
+    }
+
+    return false;
+}
+
+function RemoveOtherTeam(team) {
     for (var x = 0; x < curSelTeams.length; x++) {
         if (curSelTeams[x].name === team) {
             curSelTeams.splice(x, 1);
@@ -156,16 +190,51 @@ function PublishOdds() {
         totalOdds = 0;
     }
     else {
-        curSelTeams.sort((a,b)=>b.odds - a.odds);
+        curSelTeams.sort((a, b) => b.odds - a.odds);
         for (var x = 0; x < curSelTeams.length; x++) {
-            if(x === 0) totalOdds = curSelTeams[x].odds;
+            if (x === 0) totalOdds = curSelTeams[x].odds;
             else totalOdds += Math.floor(curSelTeams[x].odds / 2);
         }
     }
-    console.log(totalOdds);
+    document.getElementById('betodds').setAttribute('value', totalOdds);
+    //console.log(totalOdds);
 }
 
 function ShowSportsBetting() {
 
+}
+
+function SubmitBet() {
+    var userBet = document.getElementById('betvalue').value;
+
+    if (totalOdds > 0 && userBet > 0) {
+        if (userBet <= GetBalance()) {
+            var count = Object.keys(localStorage);
+            var gameList = [];
+
+            curSelTeams.forEach(game => {
+                gameList.push({
+                    match: game.match,
+                    picked: game.name
+                });
+            })
+
+            localStorage.setItem(`bet${count.length}`, JSON.stringify({
+                user: GetUser(),
+                odds: totalOdds,
+                bet: userBet,
+                games: gameList,
+                date:curSelTeams[0].timeStart
+            }));
+            ChangeBalance(-userBet);
+            curSelTeams = [];
+            PublishOdds();
+            document.getElementById('betting').innerHTML += "<span class='success-text'>&#x2713Your bet was placed successfully</span>"
+        }
+        else {
+            document.getElementById('betting').innerHTML += "<span class='error-text'>&#9888Your balance is too low</span>"
+            //Show alert that you dont have that balance
+        }
+    }
 }
 
