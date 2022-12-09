@@ -220,7 +220,7 @@ function SubmitBet() {
             })
 
             localStorage.setItem(`bet${count.length}`, JSON.stringify({
-                user: GetUser(),
+                user: getUser(),
                 odds: totalOdds,
                 bet: userBet,
                 games: gameList,
