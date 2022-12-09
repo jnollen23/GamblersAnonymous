@@ -1,0 +1,25 @@
+.vertical-list{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+}
+.horizontal-list{
+    display:flex;
+    flex-direction: row;
+}
+
+.radio-label{
+    font-size: larger;
+    padding:10px 0 0 0;
+}
+
+.game-title{
+    font-size: x-large;
+    margin: auto;
+}
+
+.sports-list{
+    border: 4px solid blue;
+    border-radius: 20px;
+    max-width: 500px;
+}
