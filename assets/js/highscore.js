@@ -14,6 +14,8 @@ function getGameName (gameName) {
 
 //The purpose of this function is to check if the player's score is a "high score"
 //The funciton should be called by whatever script will control the "game over" part of the games
+//gameScore - integer
+//gameName - string
 function highScoreChecker(gameScore, gameName) {
     var highScoresArray = getGameName(gameName);
     
@@ -51,12 +53,17 @@ function saveHighScore(gameScore, highScores, highScoresArray) {
 
 
 //The purpose of this function is to display the high score results
-function displayHighScores() {
+function displayHighScores(gameName) {
     var highScoresArray = getGameName(gameName);
     
     const highScores = JSON.parse(localStorage.getItem(highScoresArray)) ?? [];
     const hsList = document.getElementById(highScoresArray);
 
     hsList.innerHTML = highScores.map((score) => `<li>${score.gameScore} - ${score.name}`).join('');
+}
+
+function displayAllHighScores(){
+    //Create OL element
+    //Put the high scores into this array
 }
 

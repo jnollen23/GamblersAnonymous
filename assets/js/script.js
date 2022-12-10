@@ -1,7 +1,8 @@
 
-function openPage(pageName, elmnt, color) {
+function openPage(pageName, elmnt) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
+    var color = "green";
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
@@ -14,10 +15,22 @@ function openPage(pageName, elmnt, color) {
     }
   
     // Show the specific tab content
-    document.getElementById(pageName).style.display = "block";
+    if(pageName === "Sports-Betting"){
+        ShowSportsBetting();
+    }
+    else if(pageName === "High-Scores"){
+        displayAllHighScores();
+    }
+    else{
+        document.getElementById(pageName).style.display = "block";
+    }
+
   
     // Add the specific color to the button used to open the tab content
     elmnt.style.backgroundColor = color;
+
+    //Clearing out body-location article
+    headerLocation.innerHTML = '';
   }
   
   // Get the element with id="defaultOpen" and click on it
