@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet "href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -15,67 +16,55 @@
     <title>Your Favorite Online Casino</title>
 </head>
 <body>
-    <header class="mdc-top-app-bar">
-        <div class="mdc-top-app-bar__row">
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-center">
-                <span class="mdc-top-app-bar__Website-Name">&#127808;Four Leaf</span>
-                <span class="mdc-top-app-bar__coins">Coin Balance:$$$ </span>
-                <button class="mdc-button mdc-button--raised" id='login'>
-                    <span class="mdc-button__label">Sign-up/Login</span>
-                </button>
-            </section>
-        </div>
-    </header>
-    <main class="mdc-top-app-bar--fixed-adjust">
-    </main>
-    <div class="mdc-tab-bar" role="tablist">
-        <div class="mdc-tab-scroller">
-            <div class="mdc-tab-scroller__scroll-area">
-                <div class="mdc-tab-scroller__scroll-content">
-                    <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                        <span class="mdc-tab__content">
-                            <span class="mdc-tab__icon material-icons" aria-hidden="true">&#127942;</span>
-                            <span class="mdc-tab__text-label">High Scores</span>
-                        </span>
-                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                        </span>
-                        <span class="mdc-tab__ripple"></span>
-                    </button>
-                    <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                        <span class="mdc-tab__content">
-                            <span class="mdc-tab__icon material-icons" aria-hidden="true">&#127920;</span>
-                            <span class="mdc-tab__text-label">Casino Games</span>
-                        </span>
-                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                        </span>
-                        <span class="mdc-tab__ripple"></span>
-                    </button>
-                    <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                        <span class="mdc-tab__content">
-                            <span class="mdc-tab__icon material-icons" aria-hidden="true">&#128377;</span>
-                            <span class="mdc-tab__text-label">Arcade Games</span>
-                        </span>
-                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                        </span>
-                        <span class="mdc-tab__ripple"></span>
-                    </button>
-                    <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                        <span class="mdc-tab__content">
-                            <span class="mdc-tab__icon material-icons" aria-hidden="true">&#127936;</span>
-                            <span class="mdc-tab__text-label">Sports Betting</span>
-                        </span>
-                        <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                        </span>
-                        <span class="mdc-tab__ripple"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-center">
+        <span class="mdc-top-app-bar__Website-Name">&#127808;Four Leaf</span>
+        <span class="mdc-top-app-bar__coins">Coin Balance:$$$ </span>
+        <button class="mdc-button mdc-button--raised">
+          <span class="mdc-button__label">Sign-up/Login</span>
+        </button>
+      </section>
     </div>
+  </header>
+<main class="mdc-top-app-bar--fixed-adjust">
+  <button class="tablink" onclick="openPage('Casino-Games', this, 'red')"> &#127920; Casino Games</button>
+  <button class="tablink" onclick="openPage('Arcade-Games', this, 'green')" id="defaultOpen"> &#128377; Arcade Games</button>
+  <button class="tablink" onclick="openPage('Sports-Betting', this, 'blue')"> &#127936; Sports Betting</button>
+  <button class="tablink" onclick="openPage('High-Scores', this, 'orange')"> &#127942; High Scores</button>
+</main>
+<div id="Casino-Games" class="tabcontent">
+  <h3>Casino Games</h3>
+  <p>Casino games should go here</p>
+</div>
+
+<div id="Arcade-Games" class="tabcontent">
+  <h3>Arcade Games</h3>
+  <p>Arcade games should go here</p>
+  <div class="row">
+    <div class="col s12 m6 l3"><p><img class=imgplc1 src="./assets/css/images/pacman coming soon.png"></p></div>
+    <div class="col s12 m6 l3"><p><img class=imgplc2 src="./assets/css/images/comingsoongame2.jpeg"></p></div>
+    <div class="col s12 m6 l3"><p><img class=imgplc3 src="./assets/css/images/placeholder3.png"></p></div>
+    <div class="col s12 m6 l3"><p><link rel="stylesheet" href="./assets/css/pingpong.css"></p></div>
+  </div>
+    <div id=container>
+      <div id="player-score">0</div>
+      <div id="computer-score">0</div>
+      <div class="ball" id="ball"></div>
+      <div class="paddleLeft" id="player-paddle"></div>
+      <div class="paddleRight" id="computer-paddle"></div>
+    </div>
+
+<div id="Sports-Betting" class="tabcontent">
+  <h3>Sports Betting</h3>
+  <p>Sports Betting should go here</p>
+</div>
+
+<div id="High-Scores" class="tabcontent">
+  <h3>High Scores</h3>
+  <p>High Scores should go here</p>
+  
+</div>
     
     <!-- All code for the body of the page using the index page should go inside this body-location
     JSon will be attaching my page to this point and deleting anything inside of it when sports page is called -->
@@ -90,5 +79,8 @@
     <script src="./assets/js/SportsBetting.js"></script>
     <script src="./assets/js/Utils.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="assets/js/pingpong.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
 </body>
 </html>
