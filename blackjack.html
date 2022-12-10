@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <input class="deckId" hidden></input>
+
+    <div class="betting">
+        <h2>How much would you like to bet?</h2>
+        <input class="betAmount"></input>
+        <button id="startGameBtn" type="button" onclick="createDeck(6)">Bet</button>
+    </div>
+    
+    <div class="dealGame">
+        <button id="drawBtn" type="button" onclick="dealCards()" hidden>Start Game</button>
+        <button id="playerDrawBtn" type="button" onclick="playerDraw()" hidden>Hit</button>
+        <button id="stayBtn" type="button" onclick="stay()" hidden>Stay</button>
+        <button id="doubleBtn" type="button" onclick="doubleDown()" hidden>Double Down</button>
+        <button id="reset" type="button" onclick="restart()" hidden>reset</button>
+        <!-- <button id="dealerDrawBtn" type="button" onclick="dealerDraw()" hidden>Dealer Draw</button> -->
+        <h2 class="playerHandHeader"></h2>
+        <div class="playerHand">
+        </div>
+        <div class="centerBoard"></div>
+        <h2 class="dealerHandHeader"></h2>
+        <div class="dealerHand">
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="./assets/js/deck.js"></script>
+    <script src="./assets/js/CurrencyStorage.js"></script>
+</body>
+
+</html>
+
+
