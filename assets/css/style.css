@@ -9,7 +9,7 @@
     color: rgb(44, 216, 44);
     width: 30%;
 }
-.mdc-button.mdc-button--raised {
+#login {
     position:absolute;
     margin-left: 85%;
     background-color:rgb(44, 216, 44);
@@ -62,5 +62,11 @@ body, html {
   #High-Scores {background-color: orange;}
 
 
+.error-text{
+    color:red;
+}
 
-  
+.success-text{
+    color:green;
+}
+
