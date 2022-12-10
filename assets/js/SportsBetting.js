@@ -219,7 +219,7 @@ function SubmitBet() {
                 });
             })
 
-            localStorage.setItem(`bet${count.length}`, JSON.stringify({
+            localStorage.setItem(`bet-${GetUser()}-${count}`, JSON.stringify({
                 user: getUser(),
                 odds: totalOdds,
                 bet: userBet,
@@ -238,3 +238,11 @@ function SubmitBet() {
     }
 }
 
+function PayBets(){
+    var keys = Object.keys(localStorage);
+    keys.forEach(key=> {
+        if(key.indexOf(`bet-${GetUser()}`)){
+            
+        }
+    })
+}
