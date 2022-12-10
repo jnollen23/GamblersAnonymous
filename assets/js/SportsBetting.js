@@ -245,4 +245,7 @@ function PayBets(){
             
         }
     })
+
+    //Callthis when paying
+    highScoreChecker(0, "sportsBetting")
 }
