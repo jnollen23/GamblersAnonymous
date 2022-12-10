@@ -42,4 +42,6 @@ function openPage(pageName, elmnt) {
 function UserLogin(){
     SetUser('user');
     var userBalance = GetBalance();
+    //When user logs in will pay all their sports bets
+    PayBets();
 }

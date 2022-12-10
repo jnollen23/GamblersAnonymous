@@ -144,7 +144,7 @@ function UpdateOdds(team) {
                 curSelTeams.push({
                     name: gameOdds[x].awayTeam,
                     odds: gameOdds[x].awayOdds,
-                    match: gameOdds[x].AwayTeamName + "|" + gameOdds[x].HomeTeamName,
+                    match: gameOdds[x].awayTeam + "|" + gameOdds[x].homeTeam,
                     date:gameOdds[x].date,
                     competition:gameOdds[x].competition,
                     sport:gameOdds[x].sport
@@ -156,8 +156,8 @@ function UpdateOdds(team) {
                 curSelTeams.push({ 
                     name: gameOdds[x].homeTeam, 
                     odds: gameOdds[x].homeOdds, 
-                    match: gameOdds[x].AwayTeamName + "|" + gameOdds[x].HomeTeamName,
-                    date:gameOdds[x].timeStart
+                    match: gameOdds[x].awayTeam + "|" + gameOdds[x].homeTeam,
+                    date:gameOdds[x].date
                 });
                 RemoveOtherTeam(gameOdds[x].awayTeam);
                 break;
@@ -192,8 +192,7 @@ function PublishOdds() {
     else {
         curSelTeams.sort((a, b) => b.odds - a.odds);
         for (var x = 0; x < curSelTeams.length; x++) {
-            if (x === 0) totalOdds = curSelTeams[x].odds;
-            else totalOdds += Math.floor(curSelTeams[x].odds / 2);
+            totalOdds += curSelTeams[x].odds;
         }
     }
     document.getElementById('betodds').setAttribute('value', totalOdds);
@@ -201,8 +200,9 @@ function PublishOdds() {
 }
 
 function ShowSportsBetting() {
-
-}
+    var timeStart = moment().add(3, 'day').format("YYYY-MM-DD");
+    GetGames('soccer', timeStart, 21);
+}  
 
 function SubmitBet() {
     var userBet = document.getElementById('betvalue').value;
@@ -219,33 +219,72 @@ function SubmitBet() {
                 });
             })
 
-            localStorage.setItem(`bet-${GetUser()}-${count}`, JSON.stringify({
+            localStorage.setItem(`bet-${getUser()}-${count.length}`, JSON.stringify({
                 user: getUser(),
                 odds: totalOdds,
                 bet: userBet,
                 games: gameList,
-                date:curSelTeams[0].timeStart
+                date:curSelTeams[0].date
             }));
             ChangeBalance(-userBet);
             curSelTeams = [];
             PublishOdds();
-            document.getElementById('betting').innerHTML += "<span class='success-text'>&#x2713Your bet was placed successfully</span>"
+            document.getElementById('betting').innerHTML += "<span class='success-text' id='betMessage'>&#x2713Your bet was placed successfully</span>"
+            StartBetClearTimerTime();
         }
         else {
-            document.getElementById('betting').innerHTML += "<span class='error-text'>&#9888Your balance is too low</span>"
+            document.getElementById('betting').innerHTML += "<span class='error-text' id='betMessage'>&#9888Your balance is too low</span>"
+            StartBetClearTimerTime();
             //Show alert that you dont have that balance
         }
+    }
+}
+
+function StartBetClearTimerTime(){
+    setTimeout(ClearBetResponse, 3000);
+}
+
+function ClearBetResponse(){
+    var doc = document.getElementById("betMessage");
+    var betDoc = document.getElementById('betting');
+    if(doc !== undefined || doc !== null){
+        betDoc.removeChild(doc);
     }
 }
 
 function PayBets(){
     var keys = Object.keys(localStorage);
     keys.forEach(key=> {
-        if(key.indexOf(`bet-${GetUser()}`)){
-            
+        if(key.indexOf(`bet-${getUser()}`) > -1){
+            var bet = JSON.parse(localStorage.getItem(key));
+            //var date = new Date();
+            //if(date.getDate >= GetCorrectUTCDate(bet.date)){
+                if(Math.floor(randomNumber() * 100) > 50){
+                    var total = bet.odds * bet.bet;
+                    total = total / 100;
+                    var winnings = Math.floor(total) + parseInt(bet.bet);
+                    ChangeBalance(winnings);
+                    highScoreChecker(winnings, "sportsBetting");
+                }
+                localStorage.removeItem(key);
+            //}
         }
     })
-
-    //Callthis when paying
-    highScoreChecker(0, "sportsBetting")
 }
+
+function GetCorrectUTCDate(date){
+    var currentDate = new Date(date);
+    var userOffSet = currentDate.getTimezoneOffset() * 60000;
+    if(userOffSet >= 0){
+        return new Date(currentDate.getTime() + userOffSet);
+    }
+    return new Date(currentDate.getTime() - userOffSet);
+}
+
+function GetOdds(){
+    var fullPath = `https://api.the-odds-api.com/v4/sports/soccer/odds/?apiKey=${sdIOApiKey}&regions=us`
+    $.ajax(fullPath)
+    .then(y => { console.log(y); });
+}
+
+
