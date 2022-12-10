@@ -1,72 +1,16 @@
-
-.mdc-top-app-bar__section {
-    background-color: #2a5084;
-}
-.mdc-top-app-bar__Website-Name {
-    position: absolute;
-    margin-left: 40%;
-    font-size: 50px;
-    color: rgb(44, 216, 44);
-    width: 30%;
-}
-#login {
-    position:absolute;
-    margin-left: 85%;
-    background-color:rgb(44, 216, 44);
-    color: black;
-    width: 165px;  
+ #headerpic {
+    background-image: url("../images/headerdeck.jpg");
 }
 
-.mdc-top-app-bar__coins {
-    position:absolute;
-    font-size: 15px;
-    margin-left: 73%;
-    color: rgb(44, 216, 44);
-    width: 10%;  
+.nav-content {
+    background-color: blueviolet;
 }
-/* Set height of body and the document to 100% to enable "full page tabs" */
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
-  
-  /* Style tab links */
-.tablink {
-    background-color: gray;
-    color:#2a5084;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-  }
-  
-.tablink:hover {
-    background-color: rgb(44, 216, 44);
-  }
-  
-  /* Style the tab content (and add height:100% for full page content) */
-.tabcontent {
-    color: #2a5084;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-  }
-  
-  #Casino-Games {background-color: red;}
-  #Arcade-Games {background-color: green;}
-  #Sports-Betting {background-color: blue;}
-  #High-Scores {background-color: orange;}
 
-
-.error-text{
+/* .error-text{
     color:red;
 }
 
 .success-text{
     color:green;
-}
+} */
 
