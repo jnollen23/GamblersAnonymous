@@ -17,3 +17,21 @@
     color:green;
 } */
 
+.btnStyle {
+    display:flex;
+    margin-bottom: 10px;
+}
+
+.cardStyle {
+    width: 136px;
+    height: 189px;
+}
+
+.headerText{
+    color: white;
+}
+
+.btnColor{
+    border: 2px solid #000000;
+    background-color:rgb(44, 216, 44);
+}
