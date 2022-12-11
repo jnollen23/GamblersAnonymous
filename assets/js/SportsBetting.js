@@ -52,6 +52,7 @@ function ShowGames(fullResp, sport, timeStart, competition) {
     var listHolder = document.createElement('div');
     listHolder.setAttribute('class', 'row');
 
+
     fullResp.forEach(game => {
         listHolder.innerHTML +=
             `

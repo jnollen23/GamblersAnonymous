@@ -276,6 +276,7 @@ function restart(){
 }
 
 function createBlackjack(){
+    $('#bootstrap').attr('href', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css");
     var innerHT = ''+
         `
         <div id="theBlackjackGame">
@@ -332,6 +333,7 @@ function blackjackBackout() {
     restart();
     $('#theBlackjackGame').remove();
     $('#Casino').show();
+    $('#bootstrap').attr('href', "");
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BLACKJACK GAME CODE END>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
