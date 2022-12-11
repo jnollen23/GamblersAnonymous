@@ -17,3 +17,39 @@
     color:green;
 } */
 
+.btnStyle {
+    display:flex;
+    margin-bottom: 10px;
+}
+
+.cardStyle {
+    width: 136px;
+    height: 189px;
+}
+
+.headerText{
+    color: white;
+}
+
+.btnColor{  
+    border: 2px solid #000000;
+    background-color:rgb(44, 216, 44);
+}
+.error-text{
+    color:red;
+}
+
+.success-text{
+    color:green;
+}
+
+#theBlackjackGame{
+    height:80vh;
+    background:url('../images/tableBG.png') no-repeat;
+    background-size: cover;
+}
+
+.gameImage {
+    width: 300px;
+    height: 300px;
+}
