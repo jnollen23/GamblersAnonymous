@@ -28,7 +28,7 @@ function ChangeBalance(value){
 
 function UpdateUI(){
     var element = document.getElementById('balance');
-    element.innerText = ` ${playerBalance}`;
+    element.innerText = `${playerBalance}`;
 }
 
 function getUser() {
