@@ -4,7 +4,9 @@ var playerStay = false;
 var bustbool = false;
 var count = 0;
 var hiddenCard = '';
+var hiddenValue = 0;
 var anteAmount = 0;
+var dealerBJ = false;
 
 //creates the deck taking in an int parameter for deciding the deck size
 function createDeck(deckSize, game) {
@@ -28,36 +30,26 @@ function createDeck(deckSize, game) {
 
 //draws a card and places the the image in the class passed by 'hand' and sets value of card in global variables
 function drawCard(hand, game) {
+    count++;
     $.ajax({
         url: "https://www.deckofcardsapi.com/api/deck/" + $('.deckId').val() + "/draw/?count=1",
         type: 'GET'
     })
     .then(function(response){
-            if(game == 'blackjack' && hand == '.dealerHand' && count == 1){
-                hiddenCard = response.cards[0].image;              
-                $(hand).append($('<img class="cardStyle">').attr('src', './assets/images/cardback.png').addClass('faceDown'));
-            }
-            else{
-                $(hand).append($('<img class="cardStyle">').attr('src', response.cards[0].image));
-            }
-            var cardValue = 0;
-            cardValue = valueConvert(response.cards[0].value);
-             if(hand ==='.playerHand'){
-                playerGameHand.push(cardValue);
+            $(hand).append($('<img class="cardStyle">').attr('src', response.cards[0].image));
+            if(hand ==='.playerHand'){
+                playerGameHand.push(valueConvert(response.cards[0].value));
+                $('.playerHandCount').text(playerHandValue());
              }
             else{
-                dealerGameHand.push(cardValue);
+                dealerGameHand.push(valueConvert(response.cards[0].value));
             }
-    count++;
     //***************************only used in blackjack game***********************************//
     //checks for possible double down
-    if(count > 4){
+    if(count > 0){
         $('#doubleBtn').addClass('d-none');
     }
-    //checks for 
-    if(game === 'blackjack' && count === 4){
-        checkForBlackjack();
-    }
+  
     //checks if player has busted
     if (game === 'blackjack' && hand === '.playerHand'){
         bust();
@@ -65,6 +57,7 @@ function drawCard(hand, game) {
             stay();
         }
     }
+    
     //checks if player has stayed and continues to dealer play
     if (game === 'blackjack' && hand === '.dealerHand' && playerStay === true){
         stay();
@@ -85,25 +78,30 @@ function dealCards() {
         type: 'GET'
     })
     .then(function(response){
-        response.cards[0].forEach((i, cards) => {
+        console.log(response);
+        response.cards.forEach((cards, i) => {
             if(i < 2) {
                 $('.playerHand').append($('<img class="cardStyle">').attr('src', cards.image));
+                playerGameHand.push(valueConvert(cards.value));
+                playerHandValue();
+            }
+            else if(i == 2) {
+                hiddenCard = cards.image;
+                console.log(hiddenCard);
+                hiddenValue = cards.value;
+                $('.dealerHand').append($('<img class="cardStyle faceDown">').attr('src', './assets/images/cardback.png'));
+                dealerGameHand.push(valueConvert(cards.value));
             }
             else {
-                if(playerStay===true){
-                    setInterval($('.dealerHand').append($('<img class="cardStyle">').attr('src', cards.image)), 5000);
-                }
-                else{
-                    $('.dealerHand').append($('<img class="cardStyle">').attr('src', cards.image));
-                }
+                $('.dealerHand').append($('<img class="cardStyle">').attr('src', cards.image));
+                dealerGameHand.push(valueConvert(cards.value));
+                console.log(cards.value);
+                $('.dealerHandCount').text(valueConvert(cards.value));
             }
         })
-    });
 
-    for(var i=0; i < 2; i++){
-            playerDraw();
-            dealerDraw();
-    }
+    checkForBlackjack();
+    });
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BLACKJACK GAME CODE START>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -143,8 +141,10 @@ function checkForBlackjack(){
         $('.centerBoard').append($('<h2 class="headerText">').text("You Got Blackjack!!!"));
     }
     else if(dealerHandValue() == 21){
+        dealerBJ = true;
         btnClean();
         $('.faceDown').attr('src', hiddenCard);
+        dealerHandValue()
         $('.centerBoard').append($('<h2 class="headerText">').text("Dealer Got Blackjack!!!"));
     }
     else{
@@ -227,7 +227,11 @@ function playerHandValue(){
                 playerGameHand[i] = 1; 
             }
         }
+        var sum = playerGameHand.reduce(function(a, b) {
+            return a+b;
+        }, 0);
     }
+    $('.playerHandCount').text(sum);
     return sum;
 }
 
@@ -247,6 +251,15 @@ function dealerHandValue(){
                 dealerGameHand[i] = 1; 
             }
         }
+        var sum = dealerGameHand.reduce(function(a, b) {
+            return a+b;
+        }, 0);
+    }
+    if(playerStay===true){
+        $('.dealerHandCount').text(sum);
+    }
+    else if(dealerBJ===true){
+        $('.dealerHandCount').text(sum);
     }
     return sum;
 }
@@ -257,7 +270,7 @@ function btnClean(){
     $('#stayBtn').addClass('d-none');
     $('#doubleBtn').addClass('d-none');
     $('#reset').removeClass('d-none');
-    console.log(GetBalance());
+    console.log("this is the balance: " + GetBalance());
 }
 
 //restarts the game
@@ -269,9 +282,12 @@ function restart(){
     dealerGameHand = [];
     $('.betting').removeClass('d-none');
     $('#reset').addClass('d-none');
+    $('.playerHandCount').empty();
+    $('.dealerHandCount').empty();
     playerStay = false;
     count = 0;
     bustBool = false;
+    dealerBJ = false;
     hiddenCard = "";
 }
 
@@ -286,7 +302,9 @@ function createBlackjack(){
         <div class ="container text-center">
             <!-- top row -->
             <div class="row align-items-center">
-                <container class="col-2 max-width"></container>
+                <container class="col-2 max-width">
+                    <h2 class="dealerHandCount bjTextColor"></h2>
+                </container>
                 <container class="col-8 max-width col align-self-center">
                     <div class="dealerHand"></div>
                 </container>
@@ -311,7 +329,9 @@ function createBlackjack(){
             </div>
             <!-- bottom row -->
             <div class="row align-items-center">
-                <container class="col-2 max-width"></container>
+                <container class="col-2 max-width">
+                    <h2 class="playerHandCount bjTextColor"></h2>
+                </container>
                 <container class="col-8 max-width col align-self-center">
                     <div class="playerHand"></div>
                 </container>
