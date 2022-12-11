@@ -11,4 +11,9 @@ document.addEventListener("DOMContentLoaded", function(){
 function UserLogin(){
     SetUser('user');
     var userBalance = GetBalance();
+    //When user logs in will pay all their sports bets
+    PayBets();
+    var signIn = $('#signin');
+    signIn.addClass('disabled');
+    signIn.text("Logged In");
 }

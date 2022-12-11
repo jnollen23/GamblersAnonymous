@@ -1,5 +1,8 @@
  #headerpic {
-    background-image: url("../images/headerdeck.jpg");
+    background-image: url("../images/headerdeck 47 large.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 150px;
 }
 
 .nav-content {
@@ -66,3 +69,43 @@ background-image: url(../images/ssfight.webp);
     color:green;
 } */
 
+.btnStyle {
+    display:flex;
+    margin-bottom: 10px;
+}
+
+.cardStyle {
+    width: 136px;
+    height: 189px;
+}
+
+.headerText{
+    color: white;
+}
+
+.btnColor{  
+    border: 2px solid #000000;
+    background-color:rgb(44, 216, 44);
+}
+.error-text{
+    color:red;
+}
+
+.success-text{
+    color:green;
+}
+
+#theBlackjackGame{
+    height:80vh;
+    background:url('../images/tableBG.png') no-repeat;
+    background-size: cover;
+}
+
+.gameImage {
+    width: 300px;
+    height: 300px;
+}
+
+#signin{
+    color:aliceblue;
+}

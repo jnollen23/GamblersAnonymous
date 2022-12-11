@@ -1,25 +1,35 @@
-.vertical-list{
-    display:flex;
+.vertical-list {
+    display: flex;
     flex-direction: column;
-    padding:10px;
+    padding: 10px;
 }
-.horizontal-list{
-    display:flex;
+
+.horizontal-list {
+    display: flex;
     flex-direction: row;
 }
 
-.radio-label{
-    font-size: larger;
-    padding:10px 0 0 0;
+.radio-label {
+    font-size: 22px;
 }
 
-.game-title{
-    font-size: x-large;
-    margin: auto;
+.game-title {
+    font-size: 25px;
 }
 
-.sports-list{
-    border: 4px solid blue;
+.sports-list {
+    border: 2px solid lightgrey;
     border-radius: 20px;
-    max-width: 500px;
+
+    -webkit-box-shadow: 2px 3px 8px #eee;
+    -moz-box-shadow: 2px 3px 8px #eee;
+    box-shadow: 2px 3px 8px #eee;
+}
+
+#betting {
+    padding-top: 20px;
+}
+
+.betting-label {
+    font-size: 25px;
 }
