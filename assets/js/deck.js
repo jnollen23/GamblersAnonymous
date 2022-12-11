@@ -50,10 +50,11 @@ function drawCard(hand, game) {
             }
     count++;
     //***************************only used in blackjack game***********************************//
-    //checks for blackjack
+    //checks for possible double down
     if(count > 4){
         $('#doubleBtn').addClass('d-none');
     }
+    //checks for 
     if(game === 'blackjack' && count === 4){
         checkForBlackjack();
     }
@@ -276,6 +277,7 @@ function restart(){
 
 function createBlackjack(){
     $('#bootstrap').attr('href', "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css");
+    console.log($('#bootstrap'))
     var innerHT = ''+
         `
         <div id="theBlackjackGame">
