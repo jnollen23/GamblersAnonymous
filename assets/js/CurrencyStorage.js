@@ -22,7 +22,7 @@ function ChangeBalance(value){
     if(typeof(value) === "string")
         newValue = parseInt(value)
     playerBalance += newValue;
-    localStoage.setItem(user, playerBalance);
+    localStorage.setItem(user, playerBalance);
     UpdateUI();
 }
 
