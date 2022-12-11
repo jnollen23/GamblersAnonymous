@@ -17,3 +17,8 @@ function UserLogin(){
     signIn.addClass('disabled');
     signIn.text("Logged In");
 }
+
+function NavBarColor(color){
+  var navBar = document.getElementsByClassName('nav-content')[0];
+  navBar.style.backgroundColor = color;
+}

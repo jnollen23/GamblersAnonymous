@@ -59,6 +59,24 @@ background-image: url(../images/ssfight.webp);
     background-image:url(../images/blackjack.jpg);
 }
 
+.casino-image-2 {
+    background-image: url(../images/slots.jpg);
+}
+
+
+
+
+
+
+
+/* .error-text{
+    color:red;
+}
+
+.success-text{
+    color:green;
+} */
+
 .btnStyle {
     margin-bottom: 10px;
 }

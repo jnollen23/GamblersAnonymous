@@ -18,3 +18,7 @@
     display: flex;
     justify-content: center;
   }
+
+  #snake-exit{
+    margin: 10px;
+  }
