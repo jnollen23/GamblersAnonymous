@@ -52,7 +52,7 @@ function drawCard(hand, game) {
     //***************************only used in blackjack game***********************************//
     //checks for blackjack
     if(count > 4){
-        $('#doubleBtn').removeClass('d-none');
+        $('#doubleBtn').addClass('d-none');
     }
     if(game === 'blackjack' && count === 4){
         checkForBlackjack();
@@ -138,7 +138,7 @@ function checkForBlackjack(){
     }
     else if(playerHandValue() == 21){
         btnClean();
-        ChangeBalance(4*anteAmount);
+        ChangeBalance(2.5*anteAmount);
         $('.centerBoard').append($('<h2 class="headerText">').text("You Got Blackjack!!!"));
     }
     else if(dealerHandValue() == 21){
@@ -285,22 +285,22 @@ function createBlackjack(){
             <!-- top row -->
             <div class="row align-items-center">
                 <container class="col-2 max-width"></container>
-                <container class="col-8 max-width">
+                <container class="col-8 max-width col align-self-center">
                     <div class="dealerHand"></div>
                 </container>
-                <container class="col-2 max-width">
-                <button id="bjExit" type="button" onclick="blackjackBackout()" class="btn btnColor row btnStyle">EXIT</button>
+                <container class="col-2 max-width align-self-start">
+                <button id="bjExit" type="button" onclick="blackjackBackout()" class="btn btnColor row btnStyle"><strong>EXIT</strong></button>
                 </container>
             </div>
             <!-- middle row -->
-            <div class="row align-items-center">
+            <div class="row">
                 <container class="col-2 max-width"></container>
-                <container class="col-8 max-width">
+                <container class="col-8 max-width col align-self-center">
                     <!-- div for getting bet amount and creating deck -->
-                    <div class="betting">
+                    <div class="betting ">
                         <h2 class="headerText">How much would you like to bet?</h2>
-                        <input class="betAmount form-control"></input>
-                        <button id="startGameBtn" type="button" class="btn btnColor btnStyle" onclick="createDeck(6, 'blackjack')">DEAL</button>
+                        <input class="betAmount inputSize form-control text-center align-content-center"></input>
+                        <button id="startGameBtn" type="button" class="btn btnColor btnStyle" onclick="createDeck(6, 'blackjack')"><strong>DEAL</strong></button>
                     </div>
                     <div class="centerBoard" ></div>
                 </container>
@@ -308,16 +308,16 @@ function createBlackjack(){
                 </container>
             </div>
             <!-- bottom row -->
-            <div class="row align-items-center ">
+            <div class="row align-items-center">
                 <container class="col-2 max-width"></container>
-                <container class="col-8 max-width">
+                <container class="col-8 max-width col align-self-center">
                     <div class="playerHand"></div>
                 </container>
                 <container class="col-2 max-width">
-                    <button id="playerDrawBtn" type="button" onclick="playerDraw()" class="btn btnColor row d-none btnStyle col">HIT</button>
-                    <button id="stayBtn" type="button" onclick="stay()" class="btn btnColor row d-none btnStyle col">STAY</button>
-                    <button id="doubleBtn" type="button" onclick="doubleDown()" class="btn btnColor row d-none btnStyle col">DOUBLE DOWN</button>
-                    <button id="reset" type="button" onclick="restart()" class="btn btnColor row d-none btnStyle col">NEW GAME</button>
+                    <button id="playerDrawBtn" type="button" onclick="playerDraw()" class="btn btnColor row d-none btnStyle col"><strong>HIT</strong></button>
+                    <button id="stayBtn" type="button" onclick="stay()" class="btn btnColor row d-none btnStyle col"><strong>STAY</strong></button>
+                    <button id="doubleBtn" type="button" onclick="doubleDown()" class="btn btnColor row d-none btnStyle col"><strong>DOUBLE DOWN</strong></button>
+                    <button id="reset" type="button" onclick="restart()" class="btn btnColor row d-none btnStyle col"><strong>NEW GAME</strong></button>
                 </container>
             </div>
          </div>
