@@ -35,7 +35,7 @@ function drawCard(hand, game) {
     .then(function(response){
             if(game == 'blackjack' && hand == '.dealerHand' && count == 1){
                 hiddenCard = response.cards[0].image;              
-                $(hand).append($('<img class="cardStyle">').attr('src', '../assets/images/cardback.png').addClass('faceDown'));
+                $(hand).append($('<img class="cardStyle">').attr('src', './assets/images/cardback.png').addClass('faceDown'));
             }
             else{
                 $(hand).append($('<img class="cardStyle">').attr('src', response.cards[0].image));
@@ -323,15 +323,15 @@ function createBlackjack(){
          </div>
          </div>
         `;
-        $('#Casino-Games').append(innerHT);
-        $('.Casino-Main-Page').hide();
+        $('#Casino-Game').append(innerHT);
+        $('#Casino').hide();
         //$('#theBlackjackGame').css("background-image", "url(./assets/tableBG.png)");
 }
 
 function blackjackBackout() {
     restart();
     $('#theBlackjackGame').remove();
-    $('.Casino-Main-Page').show();
+    $('#Casino').show();
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BLACKJACK GAME CODE END>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
