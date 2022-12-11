@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet " href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/sports-betting.css">
@@ -17,77 +17,71 @@
 
 <body>
     <div class="container">
-      <nav class="nav-extended">
-        <div class="nav-wrapper" id="headerpic">
-          <a href="#" class="brand-logo">Four Leaf</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Balance:--</a></li>
-            <li><a href="badges.html">Sign-up/Login</a></li>
-          </ul>
-        </div>
-        <div class="nav-content">
-          <ul class="tabs tabs-transparent">
-            <li class="tab"><a href="#Casino">Casino Games</a></li>
-            <li class="tab"><a href="#Arcade">Arcade Games</a></li>
-            <li class="tab"><a href="#Sports">Sports Betting</a></li>
-            <li class="tab"><a href="#Scores">High Scores</a></li>
-          </ul>
-        </div>
-      </nav>
+        <nav class="nav-extended">
+            <div class="nav-wrapper" id="headerpic">
+                <a href="#" class="brand-logo">Four Leaf</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Balance:--</a></li>
+                    <li><a href="badges.html">Sign-up/Login</a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#Casino">Casino Games</a></li>
+                    <li class="tab"><a href="#Arcade">Arcade Games</a></li>
+                    <li class="tab" onclick="ShowSportsBetting()"><a href="#Sports">Sports Betting</a></li>
+                    <li class="tab"><a href="#Scores">High Scores</a></li>
+                </ul>
+            </div>
+        </nav>
 
-          <div id="Casino" class="col s12">
+        <div id="Casino" class="col s12">
             <h3>Casino Games</h3>
-        <p>Casino games should go here</p>
-          </div>
+            <p>Casino games should go here</p>
+        </div>
 
-          <div id="Arcade" class="col s12">
+        <div id="Arcade" class="col s12">
             <h3>Arcade Games</h3>
             <div class="row">
-              <div class="col s12 m6 l3">
-                  <img class=imgplc1 src="./assets/images/pacman coming soon.png">
-              </div>
-              <div class="col s12 m6 l3">
-                  <img class=imgplc2 src="./assets/images/comingsoongame2.jpeg">
-              </div>
-              <div class="col s12 m6 l3">
-                  <img class=imgplc3 src="./assets/images/placeholder3.png">
-             </div>
+                <div class="col s12 m6 l3">
+                    <img class=imgplc1 src="./assets/images/pacman coming soon.png">
+                </div>
+                <div class="col s12 m6 l3">
+                    <img class=imgplc2 src="./assets/images/comingsoongame2.jpeg">
+                </div>
+                <div class="col s12 m6 l3">
+                    <img class=imgplc3 src="./assets/images/placeholder3.png">
+                </div>
             </div>
-          </div>
-
-          <div id="Sports" class="col s12">
-              <h3>Sports Betting</h3>
-              <p>Sports Betting should go here</p>
-          </div>
-
-          <div id="Scores" class="col s12">
-              <h3>High Scores</h3>
-              <p>High Scores should go here</p>
-          </div>
         </div>
-      </nav>
+
+        <div id="Sports" class="col s12">
+            <h3>Sports Betting</h3>
+            <!-- All code for the body of the page using the index page should go inside this body-location
+    JSon will be attaching my page to this point and deleting anything inside of it when sports page is called -->
+            <article class="sports-location"></article>
+        </div>
+
+        <div id="Scores" class="col s12">
+            <h3>High Scores</h3>
+            <article class="scores-location"></article>
+        </div>
+    </div>
+    </nav>
     </div>
 
 
-    <!-- All code for the body of the page using the index page should go inside this body-location
-    JSon will be attaching my page to this point and deleting anything inside of it when sports page is called -->
-    <article class="body-location"></article>
 
 
     <!-- All Scripts go here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/CurrencyStorage.js"></script>
     <script src="./assets/js/SportsBetting.js"></script>
     <script src="./assets/js/Utils.js"></script>
     <script src="./assets/js/script.js"></script>
-<<<<<<< HEAD
-    <script src="assets/js/pingpong.js" type="module"></script>
     <script src="./assets/js/highscore.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-=======
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
->>>>>>> main
 
 </body>
 
