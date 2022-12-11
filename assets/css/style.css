@@ -18,7 +18,7 @@
 } */
 
 .btnStyle {
-    display:flex;
+    /* display:flex; */
     margin-bottom: 10px;
 }
 
@@ -43,7 +43,7 @@
     color:green;
 }
 
-#theBlackjackGame{
+#theBlackjackGame {
     height:80vh;
     background:url('../images/tableBG.png') no-repeat;
     background-size: cover;

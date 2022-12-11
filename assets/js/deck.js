@@ -139,7 +139,6 @@ function checkForBlackjack(){
     else if(playerHandValue() == 21){
         btnClean();
         ChangeBalance(4*anteAmount);
-        //playerModal();
         $('.centerBoard').append($('<h2 class="headerText">').text("You Got Blackjack!!!"));
     }
     else if(dealerHandValue() == 21){
@@ -301,7 +300,7 @@ function createBlackjack(){
                     <div class="betting">
                         <h2 class="headerText">How much would you like to bet?</h2>
                         <input class="betAmount form-control"></input>
-                        <button id="startGameBtn" type="button" class="btn, btnColor" onclick="createDeck(6, 'blackjack')">DEAL</button>
+                        <button id="startGameBtn" type="button" class="btn btnColor btnStyle" onclick="createDeck(6, 'blackjack')">DEAL</button>
                     </div>
                     <div class="centerBoard" ></div>
                 </container>
@@ -315,10 +314,10 @@ function createBlackjack(){
                     <div class="playerHand"></div>
                 </container>
                 <container class="col-2 max-width">
-                    <button id="playerDrawBtn" type="button" onclick="playerDraw()" class="btn btnColor row d-none btnStyle">HIT</button>
-                    <button id="stayBtn" type="button" onclick="stay()" class="btn btnColor row d-none btnStyle">STAY</button>
-                    <button id="doubleBtn" type="button" onclick="doubleDown()" class="btn btnColor row d-none btnStyle">DOUBLE DOWN</button>
-                    <button id="reset" type="button" onclick="restart()" class="btn btnColor row d-none btnStyle">NEW GAME</button>
+                    <button id="playerDrawBtn" type="button" onclick="playerDraw()" class="btn btnColor row d-none btnStyle col">HIT</button>
+                    <button id="stayBtn" type="button" onclick="stay()" class="btn btnColor row d-none btnStyle col">STAY</button>
+                    <button id="doubleBtn" type="button" onclick="doubleDown()" class="btn btnColor row d-none btnStyle col">DOUBLE DOWN</button>
+                    <button id="reset" type="button" onclick="restart()" class="btn btnColor row d-none btnStyle col">NEW GAME</button>
                 </container>
             </div>
          </div>
@@ -326,7 +325,6 @@ function createBlackjack(){
         `;
         $('#Casino-Game').append(innerHT);
         $('#Casino').hide();
-        //$('#theBlackjackGame').css("background-image", "url(./assets/tableBG.png)");
 }
 
 function blackjackBackout() {
