@@ -21,4 +21,11 @@ function UserLogin(){
 function NavBarColor(color){
   var navBar = document.getElementsByClassName('nav-content')[0];
   navBar.style.backgroundColor = color;
+  $('#theBlackjackGame').remove();
+  $('#slot-machine').remove();
+  $("#snakegamebody").hide();
+  var hrefCompare = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css";
+  if ($('#bootstrap').prop('href') === hrefCompare){
+    $('#bootstrap').attr('href', "");
+  }
 }

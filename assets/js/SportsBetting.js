@@ -194,6 +194,13 @@ function PublishOdds() {
 }
 
 function ShowSportsBetting() {
+    $('#theBlackjackGame').remove();
+    $('#slot-machine').remove();
+    $("#snakegamebody").hide();
+    var hrefCompare = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css";
+    if ($('#bootstrap').prop('href') === hrefCompare){
+      $('#bootstrap').attr('href', "");
+    }
     var navBar = document.getElementsByClassName('nav-content')[0];
     navBar.style.backgroundColor = "rgb(76,163,245)";
     var timeStart = moment().add(3, 'day').format("YYYY-MM-DD");
