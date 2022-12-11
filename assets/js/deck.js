@@ -35,7 +35,7 @@ function drawCard(hand, game) {
     .then(function(response){
             if(game == 'blackjack' && hand == '.dealerHand' && count == 1){
                 hiddenCard = response.cards[0].image;              
-                $(hand).append($('<img class="cardStyle">').attr('src', './assets/cardback.png').addClass('faceDown'));
+                $(hand).append($('<img class="cardStyle">').attr('src', '../assets/images/cardback.png').addClass('faceDown'));
             }
             else{
                 $(hand).append($('<img class="cardStyle">').attr('src', response.cards[0].image));
@@ -273,6 +273,65 @@ function restart(){
     count = 0;
     bustBool = false;
     hiddenCard = "";
+}
+
+function createBlackjack(){
+    var innerHT = ''+
+        `
+        <div id="theBlackjackGame">
+        <input class="deckId d-none"></input>
+
+        <div class ="container text-center">
+            <!-- top row -->
+            <div class="row align-items-center">
+                <container class="col-2 max-width"></container>
+                <container class="col-8 max-width">
+                    <div class="dealerHand"></div>
+                </container>
+                <container class="col-2 max-width">
+                <button id="bjExit" type="button" onclick="blackjackBackout()" class="btn btnColor row btnStyle">EXIT</button>
+                </container>
+            </div>
+            <!-- middle row -->
+            <div class="row align-items-center">
+                <container class="col-2 max-width"></container>
+                <container class="col-8 max-width">
+                    <!-- div for getting bet amount and creating deck -->
+                    <div class="betting">
+                        <h2 class="headerText">How much would you like to bet?</h2>
+                        <input class="betAmount form-control"></input>
+                        <button id="startGameBtn" type="button" class="btn, btnColor" onclick="createDeck(6, 'blackjack')">DEAL</button>
+                    </div>
+                    <div class="centerBoard" ></div>
+                </container>
+                <container class="bjGame col-2 max-width">
+                </container>
+            </div>
+            <!-- bottom row -->
+            <div class="row align-items-center ">
+                <container class="col-2 max-width"></container>
+                <container class="col-8 max-width">
+                    <div class="playerHand"></div>
+                </container>
+                <container class="col-2 max-width">
+                    <button id="playerDrawBtn" type="button" onclick="playerDraw()" class="btn btnColor row d-none btnStyle">HIT</button>
+                    <button id="stayBtn" type="button" onclick="stay()" class="btn btnColor row d-none btnStyle">STAY</button>
+                    <button id="doubleBtn" type="button" onclick="doubleDown()" class="btn btnColor row d-none btnStyle">DOUBLE DOWN</button>
+                    <button id="reset" type="button" onclick="restart()" class="btn btnColor row d-none btnStyle">NEW GAME</button>
+                </container>
+            </div>
+         </div>
+         </div>
+        `;
+        $('#Casino-Games').append(innerHT);
+        $('.Casino-Main-Page').hide();
+        //$('#theBlackjackGame').css("background-image", "url(./assets/tableBG.png)");
+}
+
+function blackjackBackout() {
+    restart();
+    $('#theBlackjackGame').remove();
+    $('.Casino-Main-Page').show();
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BLACKJACK GAME CODE END>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
