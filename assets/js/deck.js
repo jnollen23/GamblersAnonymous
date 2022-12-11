@@ -323,15 +323,15 @@ function createBlackjack(){
          </div>
          </div>
         `;
-        $('#Casino').append(innerHT);
-        $('.Casino-Main-Page').hide();
+        $('#Casino-Game').append(innerHT);
+        $('#Casino').hide();
         //$('#theBlackjackGame').css("background-image", "url(./assets/tableBG.png)");
 }
 
 function blackjackBackout() {
     restart();
     $('#theBlackjackGame').remove();
-    $('.Casino-Main-Page').show();
+    $('#Casino').show();
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BLACKJACK GAME CODE END>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
