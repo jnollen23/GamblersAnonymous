@@ -14,6 +14,7 @@ function SetUser(name){
         localStorage.setItem(user, 5000);
         playerBalance = 5000;
     }
+    UpdateUI();
 }
 
 function ChangeBalance(value){
@@ -21,7 +22,13 @@ function ChangeBalance(value){
     if(typeof(value) === "string")
         newValue = parseInt(value)
     playerBalance += newValue;
-    localStorage.setItem(user, playerBalance);
+    localStoage.setItem(user, playerBalance);
+    UpdateUI();
+}
+
+function UpdateUI(){
+    var element = document.getElementById('balance');
+    element.innerText = ` ${playerBalance}`;
 }
 
 function getUser() {
