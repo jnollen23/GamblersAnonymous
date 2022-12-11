@@ -8,7 +8,7 @@ function GetBalance(){
 function SetUser(name){
     user = name;
     if(Object.keys(localStorage).indexOf(user) > -1){
-        playerBalance = parseInt(localStorage.getItem(user));
+        playerBalance = parseFloat(localStorage.getItem(user));
     }
     else{
         localStorage.setItem(user, 5000);
@@ -17,7 +17,10 @@ function SetUser(name){
 }
 
 function ChangeBalance(value){
-    playerBalance += value;
+    var newValue = value;
+    if(typeof(value) === "string")
+        newValue = parseInt(value)
+    playerBalance += newValue;
     localStorage.setItem(user, playerBalance);
 }
 

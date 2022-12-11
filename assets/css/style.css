@@ -1,5 +1,8 @@
  #headerpic {
-    background-image: url("../images/headerdeck.jpg");
+    background-image: url("../images/headerdeck 47 large.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 150px;
 }
 
 .nav-content {
