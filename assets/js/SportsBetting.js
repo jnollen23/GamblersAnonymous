@@ -180,17 +180,13 @@ function RemoveOtherTeam(team) {
 }
 
 function PublishOdds() {
-    if (curSelTeams.length === 0) {
-        totalOdds = 0;
-    }
-    else {
-        curSelTeams.sort((a, b) => b.odds - a.odds);
-        for (var x = 0; x < curSelTeams.length; x++) {
-            totalOdds += curSelTeams[x].odds;
-        }
+    totalOdds = 0;
+
+    curSelTeams.sort((a, b) => b.odds - a.odds);
+    for (var x = 0; x < curSelTeams.length; x++) {
+        totalOdds += curSelTeams[x].odds;
     }
     document.getElementById('betodds').setAttribute('value', totalOdds);
-    //console.log(totalOdds);
 }
 
 function ShowSportsBetting() {
