@@ -12,20 +12,20 @@ N/A
 ## Usage
 To start you need to login - click the sign-in/login button in the upper right corner
 If you want to do some gambling select either a casino game or some sports betting. If you just want to play some fun games checkout the arcade games.
-![Image of game Start]("assets/images/GroupProj1.jpg")
+![Image of game Start](assets/images/GroupProj1.jpg)
 
 Select a game by clicking on the picture.
-![Image of selecting a game to play]("assets/images/ClicktoPlay.jpg")
+![Image of selecting a game to play](assets/images/ClicktoPlay.jpg)
 
 Blackjack
-[Standard blackjack rules]("https://bicyclecards.com/how-to-play/blackjack/") but no splitting 
+[Standard blackjack rules](https://bicyclecards.com/how-to-play/blackjack/) but no splitting 
 Enter your bet on the line above
 Hit deal to start the game
-![Starting blackjack game with bet]("assets/images/Blackjackstart.jpg")
+![Starting blackjack game with bet](assets/images/Blackjackstart.jpg)
 
 Hit/Stand/Double Down are on the right of your cards. If you double down you only get 1 card.
 Hit exit to leave the game
-![Playing blackjack game]("assets/images/Blackjackdelt.jpg")
+![Playing blackjack game](assets/images/Blackjackdelt.jpg)
 
 
 Slots
