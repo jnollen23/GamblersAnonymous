@@ -63,22 +63,7 @@ background-image: url(../images/ssfight.webp);
     background-image: url(../images/slots.jpg);
 }
 
-
-
-
-
-
-
-/* .error-text{
-    color:red;
-}
-
-.success-text{
-    color:green;
-} */
-
 .btnStyle {
-    /* display:flex; */
     margin-bottom: 10px;
 }
 
@@ -112,6 +97,11 @@ background-image: url(../images/ssfight.webp);
 #signin{
     color:aliceblue;
 }
+
 .inputSize {
     font-size: 24px !important;
+}
+
+.bjTextColor {
+    color: white;
 }
